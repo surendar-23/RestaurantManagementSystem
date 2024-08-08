@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(CustomerNotFoundException.class)
 	public ResponseEntity<CustomerErrorResponse> handleException(CustomerNotFoundException ex) {
-		// Create User Error Response
+		// Create customer Error Response
 		CustomerErrorResponse error = new CustomerErrorResponse();
 		error.setStatus(HttpStatus.NOT_FOUND.value());
 		error.setMessage(ex.getMessage());
@@ -28,7 +28,7 @@ public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<CustomerErrorResponse> handleException(Exception ex) {
-//		Create Employee error response
+		// Create customer error response
 		CustomerErrorResponse error = new CustomerErrorResponse();
 		error.setStatus(HttpStatus.BAD_REQUEST.value());
 		error.setMessage(ex.getMessage());

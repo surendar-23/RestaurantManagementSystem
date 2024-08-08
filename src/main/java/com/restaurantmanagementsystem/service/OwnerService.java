@@ -1,15 +1,18 @@
 package com.restaurantmanagementsystem.service;
 
+import java.util.List;
+
 import com.restaurantmanagementsystem.entity.Owner;
-import com.restaurantmanagementsystem.exception.OwnerNotFoundException;
 
 public interface OwnerService {
 
 	Owner createOwner(Owner owner);
 
-	Owner getOwnerById(Long id) throws OwnerNotFoundException;
+	Owner getOwnerById(Long id);
+
+	List<Owner> getAllOwners();
 
 	Owner updateOwner(Owner owner);
 
-	void deleteOwner(Long id) throws OwnerNotFoundException;
+	void deleteOwner(Long id);
 }

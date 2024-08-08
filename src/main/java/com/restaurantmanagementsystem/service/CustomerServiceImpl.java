@@ -1,7 +1,6 @@
 package com.restaurantmanagementsystem.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,43 +12,27 @@ import com.restaurantmanagementsystem.repository.CustomerRepository;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-	@Autowired // Injecting repository in service
-	private CustomerRepository employeeRepository;
+	@Autowired
+	private CustomerRepository customerRepository;
 
-	public CustomerServiceImpl(CustomerRepository employeeRepository) {
-		super();
-		this.employeeRepository = employeeRepository;
+	@Override
+	public List<Customer> getAllCustomers() {
+		return customerRepository.findAll();
 	}
 
 	@Override
-	public List<Customer> findAll() {
-		return employeeRepository.findAll();
+	public Customer getCustomerById(Long id) {
+		return customerRepository.findById(id)
+				.orElseThrow(() -> new CustomerNotFoundException("Customer not found with id: " + id));
 	}
 
 	@Override
-	public Customer findById(int custId) throws CustomerNotFoundException {
-		Optional<Customer> result = employeeRepository.findById(custId);
-		Customer customer;
-		if (result.isPresent()) {
-			customer = result.get();
-		} else {
-			throw new CustomerNotFoundException("Customer id not found : " + custId);
-		}
-		return customer;
+	public Customer saveCustomer(Customer customer) {
+		return customerRepository.save(customer);
 	}
 
 	@Override
-	public void deleteById(int custId) throws CustomerNotFoundException {
-		if (employeeRepository.existsById(custId)) {
-			employeeRepository.deleteById(custId);
-		} else {
-			throw new CustomerNotFoundException("Customer with ID : " + custId + " not found");
-		}
-	}
-
-	@Override
-	public Customer save(Customer customer) {
-		// TODO Auto-generated method stub
-		return employeeRepository.save(customer);
+	public void deleteCustomer(Long id) {
+		customerRepository.deleteById(id);
 	}
 }

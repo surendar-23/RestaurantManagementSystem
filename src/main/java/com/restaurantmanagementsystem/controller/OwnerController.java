@@ -1,5 +1,7 @@
 package com.restaurantmanagementsystem.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,15 +32,18 @@ public class OwnerController {
 		this.ownerService = ownerService;
 	}
 
+	// Find All Owners
+	@GetMapping("/owners")
+	public ResponseEntity<List<Owner>> findAll() {
+		List<Owner> owners = ownerService.getAllOwners();
+		return new ResponseEntity<>(owners, HttpStatus.OK);
+	}
+
 	// Find By Id
-	@GetMapping("owners/{ownerId}")
+	@GetMapping("/owners/{ownerId}")
 	public ResponseEntity<Owner> getById(@PathVariable Long ownerId) {
 		Owner owner = ownerService.getOwnerById(ownerId);
-		if (owner != null) {
-			return new ResponseEntity<>(owner, HttpStatus.OK);
-		} else {
-			throw new OwnerNotFoundException("Owner not found with id: " + ownerId);
-		}
+		return new ResponseEntity<>(owner, HttpStatus.OK);
 	}
 
 	// Adding Owner
@@ -60,7 +65,7 @@ public class OwnerController {
 	}
 
 	// Delete an Owner
-	@DeleteMapping("owners/{ownerId}")
+	@DeleteMapping("/owners/{ownerId}")
 	public String deleteOwner(@PathVariable Long ownerId) {
 		try {
 			ownerService.deleteOwner(ownerId);

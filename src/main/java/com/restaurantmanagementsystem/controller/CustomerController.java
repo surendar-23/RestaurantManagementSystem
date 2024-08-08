@@ -15,68 +15,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restaurantmanagementsystem.entity.Customer;
-import com.restaurantmanagementsystem.exception.CustomerNotFoundException;
 import com.restaurantmanagementsystem.service.CustomerService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/customers")
 public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
 
-	// Constructor injection (optional, if you prefer)
-	public CustomerController(CustomerService customerService) {
-		this.customerService = customerService;
-	}
-
-	// Find All Customers
-	@GetMapping("customers")
+	@GetMapping
 	public ResponseEntity<List<Customer>> findAll() {
-		List<Customer> customers = customerService.findAll();
+		List<Customer> customers = customerService.getAllCustomers();
 		return new ResponseEntity<>(customers, HttpStatus.OK);
 	}
 
-	// Find By Id
-	@GetMapping("customers/{customerId}")
-	public ResponseEntity<Customer> getById(@PathVariable int customerId) {
-		Customer customer = customerService.findById(customerId);
-		if (customer != null) {
-			return new ResponseEntity<>(customer, HttpStatus.OK);
-		} else {
-			throw new CustomerNotFoundException("Customer not found with id: " + customerId);
-		}
+	@GetMapping("/{customerId}")
+	public ResponseEntity<Customer> getById(@PathVariable Long customerId) {
+		Customer customer = customerService.getCustomerById(customerId);
+		return new ResponseEntity<>(customer, HttpStatus.OK);
 	}
 
-	// Updating Customer
-	@PutMapping("/customers")
-	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer)
-			throws CustomerNotFoundException {
-		if (customer.getCustomerId() <= 0) {
-			throw new CustomerNotFoundException("Customer ID must be provided for update");
-		}
-		Customer updatedCustomer = customerService.save(customer);
+	@PostMapping
+	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) {
+		Customer createdCustomer = customerService.saveCustomer(customer);
+		return new ResponseEntity<>(createdCustomer, HttpStatus.CREATED);
+	}
+
+	@PutMapping("/{customerId}")
+	public ResponseEntity<Customer> updateCustomer(@PathVariable Long customerId,
+			@Valid @RequestBody Customer customer) {
+		customer.setId(customerId);
+		Customer updatedCustomer = customerService.saveCustomer(customer);
 		return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
 	}
 
-	// Adding Customer
-	@PostMapping("/customers")
-	public ResponseEntity<Customer> updateCustomer(@Valid @RequestBody Customer customer) {
-		customer.setCustomerId(0); // Ensure new customer ID is generated
-		Customer createdCustomer = customerService.save(customer);
-		return new ResponseEntity<>(createdCustomer, HttpStatus.OK);
-	}
-
-	// Delete a Customer
-	@DeleteMapping("customers/{customerId}")
-	public String deleteCustomer(@PathVariable int customerId) {
-		try {
-			customerService.deleteById(customerId);
-			return "Deleted Customer ID : " + customerId;
-		} catch (CustomerNotFoundException e) {
-			return "Customer with ID : " + customerId + " not found";
-		}
+	@DeleteMapping("/{customerId}")
+	public ResponseEntity<Void> deleteCustomer(@PathVariable Long customerId) {
+		customerService.deleteCustomer(customerId);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

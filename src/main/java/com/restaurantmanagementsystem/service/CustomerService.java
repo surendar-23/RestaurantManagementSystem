@@ -3,14 +3,13 @@ package com.restaurantmanagementsystem.service;
 import java.util.List;
 
 import com.restaurantmanagementsystem.entity.Customer;
-import com.restaurantmanagementsystem.exception.CustomerNotFoundException;
 
 public interface CustomerService {
-	public List<Customer> findAll();
+	List<Customer> getAllCustomers();
 
-	public Customer findById(int custId) throws CustomerNotFoundException;
+	Customer getCustomerById(Long id);
 
-	public Customer save(Customer customer);
+	Customer saveCustomer(Customer customer);
 
-	public void deleteById(int custId) throws CustomerNotFoundException;
+	void deleteCustomer(Long id);
 }

@@ -10,6 +10,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
+@jakarta.persistence.Table(name = "owners")
 public class Owner {
 
 	@Id
@@ -23,11 +24,12 @@ public class Owner {
 	@JoinColumn(name = "restaurant_id", referencedColumnName = "id")
 	private Restaurant restaurant;
 
+	// Getters and setters
+
 	public Owner() {
 	}
 
-	public Owner(Long id, String name, Restaurant restaurant) {
-		this.id = id;
+	public Owner(String name, Restaurant restaurant) {
 		this.name = name;
 		this.restaurant = restaurant;
 	}

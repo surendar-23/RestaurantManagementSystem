@@ -42,7 +42,6 @@ public class CustomerErrorResponse {
 
 	@Override
 	public String toString() {
-		return "EmployeeErrorResponse [status=" + status + ", message=" + message + ", timeStamp=" + timeStamp + "]";
+		return "CustomerErrorResponse [status=" + status + ", message=" + message + ", timeStamp=" + timeStamp + "]";
 	}
-
 }
