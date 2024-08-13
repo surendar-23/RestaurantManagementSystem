@@ -35,7 +35,7 @@ public class Order {
 	@JoinColumn(name = "restaurant_id")
 	private Restaurant restaurant;
 
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderItem> orderItems;
 
 	@ManyToOne
@@ -46,7 +46,7 @@ public class Order {
 	@JoinColumn(name = "waiter_id")
 	private Waiter waiter;
 
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderDetails> orderDetails;
 
 	public Long getId() {

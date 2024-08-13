@@ -33,16 +33,16 @@ public class Restaurant {
 	@JoinColumn(name = "owner_id")
 	private Owner owner;
 
-	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
 	private List<Table> tables;
 
-	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
 	private List<Waiter> waiters;
 
-	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
 	private List<MenuItem> menuItems;
 
-	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
 	private List<InventoryItem> inventoryItems;
 
 	public Long getId() {

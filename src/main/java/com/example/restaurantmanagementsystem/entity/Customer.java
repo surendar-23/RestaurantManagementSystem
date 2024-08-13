@@ -27,7 +27,7 @@ public class Customer {
 	@NotBlank(message = "Phone is required")
 	private String phone;
 
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<Order> orders;
 
 	public Long getId() {

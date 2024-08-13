@@ -29,7 +29,7 @@ public class Accounting {
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    @OneToMany(mappedBy = "accounting", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "accounting", cascade = CascadeType.ALL)
     private List<Bill> bills;
 
 	public Long getId() {
