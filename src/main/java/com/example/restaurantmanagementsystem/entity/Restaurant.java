@@ -45,6 +45,9 @@ public class Restaurant {
 	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
 	private List<InventoryItem> inventoryItems;
 
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+	private List<DeliveryPartner> deliveryPartners;
+
 	public Long getId() {
 		return id;
 	}
@@ -107,6 +110,14 @@ public class Restaurant {
 
 	public void setInventoryItems(List<InventoryItem> inventoryItems) {
 		this.inventoryItems = inventoryItems;
+	}
+
+	public List<DeliveryPartner> getDeliveryPartners() {
+		return deliveryPartners;
+	}
+
+	public void setDeliveryPartners(List<DeliveryPartner> deliveryPartners) {
+		this.deliveryPartners = deliveryPartners;
 	}
 
 	// Getters and Setters

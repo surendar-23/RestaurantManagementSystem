@@ -29,8 +29,7 @@ public class MenuItem {
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
-    
-    
+      
 
 	public Category getCategory() {
 		return category;

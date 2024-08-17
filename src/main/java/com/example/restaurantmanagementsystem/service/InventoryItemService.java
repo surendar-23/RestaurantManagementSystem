@@ -28,7 +28,6 @@ public class InventoryItemService {
 	public InventoryItem createInventoryItem(InventoryItem inventoryItem) {
 		inventoryItem.setName(inventoryItem.getName());
 		inventoryItem.setQuantity(inventoryItem.getQuantity());
-		inventoryItem.setRestaurant(inventoryItem.getRestaurant());
 		inventoryItem.setSupplier(inventoryItem.getSupplier());
 		return inventoryItemRepository.save(inventoryItem);
 	}
@@ -37,7 +36,6 @@ public class InventoryItemService {
 		InventoryItem existingInventoryItem = getInventoryItemById(id);
 		existingInventoryItem.setName(inventoryItem.getName());
 		existingInventoryItem.setQuantity(inventoryItem.getQuantity());
-		existingInventoryItem.setRestaurant(inventoryItem.getRestaurant());
 		existingInventoryItem.setSupplier(inventoryItem.getSupplier());
 		return inventoryItemRepository.save(existingInventoryItem);
 	}
