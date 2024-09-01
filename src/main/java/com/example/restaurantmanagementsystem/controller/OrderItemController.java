@@ -20,32 +20,32 @@ import com.example.restaurantmanagementsystem.service.OrderItemService;
 @RequestMapping("/api/orderItems")
 public class OrderItemController {
 
-    @Autowired
-    private OrderItemService orderItemService;
+	@Autowired
+	private OrderItemService orderItemService;
 
-    @GetMapping("")
-    public List<OrderItem> getAllOrderItems() {
-        return orderItemService.getAllOrderItems();
-    }
+	@GetMapping("")
+	public List<OrderItem> getAllOrderItems() {
+		return orderItemService.getAllOrderItems();
+	}
 
-    @GetMapping("/{id}")
-    public OrderItem getOrderItemById(@PathVariable Long id) {
-        return orderItemService.getOrderItemById(id);
-    }
+	@GetMapping("/{id}")
+	public OrderItem getOrderItemById(@PathVariable Long id) {
+		return orderItemService.getOrderItemById(id);
+	}
 
-    @PostMapping("")
-    public OrderItem createOrderItem(@RequestBody OrderItem orderItem) {
-        return orderItemService.createOrderItem(orderItem);
-    }
+	@PostMapping("")
+	public OrderItem createOrderItem(@RequestBody OrderItem orderItem) {
+		return orderItemService.createOrderItem(orderItem);
+	}
 
-    @PutMapping("/{id}")
-    public OrderItem updateOrderItem(@PathVariable Long id, @RequestBody OrderItem orderItem) {
-        return orderItemService.updateOrderItem(id, orderItem);
-    }
+	@PutMapping("/{id}")
+	public OrderItem updateOrderItem(@PathVariable Long id, @RequestBody OrderItem orderItem) {
+		return orderItemService.updateOrderItem(id, orderItem);
+	}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteOrderItem(@PathVariable Long id) {
-        orderItemService.deleteOrderItem(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteOrderItem(@PathVariable Long id) {
+		orderItemService.deleteOrderItem(id);
+		return ResponseEntity.noContent().build();
+	}
 }

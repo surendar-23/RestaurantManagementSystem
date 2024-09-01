@@ -23,7 +23,6 @@ public class Supplier {
 	@OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
 	private List<InventoryItem> inventoryItems;
 
-
 	public String getName() {
 		return name;
 	}

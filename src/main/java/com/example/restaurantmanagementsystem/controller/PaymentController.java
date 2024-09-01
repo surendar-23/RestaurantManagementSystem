@@ -20,32 +20,32 @@ import com.example.restaurantmanagementsystem.service.PaymentService;
 @RequestMapping("/api/payments")
 public class PaymentController {
 
-    @Autowired
-    private PaymentService paymentService;
+	@Autowired
+	private PaymentService paymentService;
 
-    @GetMapping("")
-    public List<Payment> getAllPayments() {
-        return paymentService.getAllPayments();
-    }
+	@GetMapping("")
+	public List<Payment> getAllPayments() {
+		return paymentService.getAllPayments();
+	}
 
-    @GetMapping("/{id}")
-    public Payment getPaymentById(@PathVariable Long id) {
-        return paymentService.getPaymentById(id);
-    }
+	@GetMapping("/{id}")
+	public Payment getPaymentById(@PathVariable Long id) {
+		return paymentService.getPaymentById(id);
+	}
 
-    @PostMapping("")
-    public Payment createPayment(@RequestBody Payment payment) {
-        return paymentService.createPayment(payment);
-    }
+	@PostMapping("")
+	public Payment createPayment(@RequestBody Payment payment) {
+		return paymentService.createPayment(payment);
+	}
 
-    @PutMapping("/{id}")
-    public Payment updatePayment(@PathVariable Long id, @RequestBody Payment payment) {
-        return paymentService.updatePayment(id, payment);
-    }
+	@PutMapping("/{id}")
+	public Payment updatePayment(@PathVariable Long id, @RequestBody Payment payment) {
+		return paymentService.updatePayment(id, payment);
+	}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePayment(@PathVariable Long id) {
-        paymentService.deletePayment(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deletePayment(@PathVariable Long id) {
+		paymentService.deletePayment(id);
+		return ResponseEntity.noContent().build();
+	}
 }

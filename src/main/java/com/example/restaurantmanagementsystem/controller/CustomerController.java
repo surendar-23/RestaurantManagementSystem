@@ -20,32 +20,32 @@ import com.example.restaurantmanagementsystem.service.CustomerService;
 @RequestMapping("/api/customers")
 public class CustomerController {
 
-    @Autowired
-    private CustomerService customerService;
+	@Autowired
+	private CustomerService customerService;
 
-    @GetMapping("")
-    public List<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
-    }
+	@GetMapping("")
+	public List<Customer> getAllCustomers() {
+		return customerService.getAllCustomers();
+	}
 
-    @GetMapping("/{id}")
-    public Customer getCustomerById(@PathVariable Long id) {
-        return customerService.getCustomerById(id);
-    }
+	@GetMapping("/{id}")
+	public Customer getCustomerById(@PathVariable Long id) {
+		return customerService.getCustomerById(id);
+	}
 
-    @PostMapping("")
-    public Customer createCustomer(@RequestBody Customer customer) {
-        return customerService.createCustomer(customer);
-    }
+	@PostMapping("")
+	public Customer createCustomer(@RequestBody Customer customer) {
+		return customerService.createCustomer(customer);
+	}
 
-    @PutMapping("/{id}")
-    public Customer updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-        return customerService.updateCustomer(id, customer);
-    }
+	@PutMapping("/{id}")
+	public Customer updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
+		return customerService.updateCustomer(id, customer);
+	}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCustomer(@PathVariable Long id) {
-        customerService.deleteCustomer(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteCustomer(@PathVariable Long id) {
+		customerService.deleteCustomer(id);
+		return ResponseEntity.noContent().build();
+	}
 }

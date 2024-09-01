@@ -1,5 +1,7 @@
 package com.example.restaurantmanagementsystem.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,26 +9,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
 public class Bill {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotNull(message = "Date is required")
-    private Date date;
+	@NotNull(message = "Date is required")
+	private Date date;
 
-    @NotNull(message = "Amount is required")
-    private double amount;
+	@NotNull(message = "Amount is required")
+	private double amount;
 
-    @ManyToOne
-    @JoinColumn(name = "accounting_id")
-    private Accounting accounting;
+	@ManyToOne
+	@JoinColumn(name = "accounting_id")
+	private Accounting accounting;
 
-    private String description;
+	private String description;
 
 	public Long getId() {
 		return id;
@@ -68,7 +69,6 @@ public class Bill {
 		this.description = description;
 	}
 
-    // Getters and Setters
-    
-    
+	// Getters and Setters
+
 }

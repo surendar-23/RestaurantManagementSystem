@@ -12,24 +12,23 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 public class MenuItem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotBlank(message = "Menu item name is required")
-    private String name;
+	@NotBlank(message = "Menu item name is required")
+	private String name;
 
-    @NotNull(message = "Price is required")
-    private double price;
-    
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+	@NotNull(message = "Price is required")
+	private double price;
 
-    @ManyToOne
-    @JoinColumn(name = "restaurant_id")
-    private Restaurant restaurant;
-      
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
+
+	@ManyToOne
+	@JoinColumn(name = "restaurant_id")
+	private Restaurant restaurant;
 
 	public Category getCategory() {
 		return category;
@@ -71,7 +70,6 @@ public class MenuItem {
 		this.restaurant = restaurant;
 	}
 
-    // Getters and Setters
-    
-    
+	// Getters and Setters
+
 }

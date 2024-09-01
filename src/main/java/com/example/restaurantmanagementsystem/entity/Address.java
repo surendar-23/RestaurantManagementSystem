@@ -9,21 +9,21 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 public class Address {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotBlank(message = "Street is required")
-    private String street;
+	@NotBlank(message = "Street is required")
+	private String street;
 
-    @NotBlank(message = "City is required")
-    private String city;
+	@NotBlank(message = "City is required")
+	private String city;
 
-    @NotBlank(message = "State is required")
-    private String state;
+	@NotBlank(message = "State is required")
+	private String state;
 
-    @NotBlank(message = "ZIP code is required")
-    private String zip;
+	@NotBlank(message = "ZIP code is required")
+	private String zip;
 
 	public Long getId() {
 		return id;
@@ -65,5 +65,4 @@ public class Address {
 		this.zip = zip;
 	}
 
-    
 }

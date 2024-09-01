@@ -12,19 +12,19 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 public class Waiter {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotBlank(message = "Waiter name is required")
-    private String name;
+	@NotBlank(message = "Waiter name is required")
+	private String name;
 
-    @NotNull(message = "Experience is required")
-    private int experience;
+	@NotNull(message = "Experience is required")
+	private int experience;
 
-    @ManyToOne
-    @JoinColumn(name = "restaurant_id")
-    private Restaurant restaurant;
+	@ManyToOne
+	@JoinColumn(name = "restaurant_id")
+	private Restaurant restaurant;
 
 	public Long getId() {
 		return id;
@@ -58,7 +58,6 @@ public class Waiter {
 		this.restaurant = restaurant;
 	}
 
-    // Getters and Setters
-    
-    
+	// Getters and Setters
+
 }

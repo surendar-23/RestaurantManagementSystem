@@ -25,7 +25,7 @@ public class TableService {
 	}
 
 	public Table createTable(Table table) {
-		System.out.println("Table added Successfully "+ table);
+		System.out.println("Table added Successfully " + table);
 		table.setCapacity(table.getCapacity());
 		table.setNumber(table.getNumber());
 		table.setRestaurant(table.getRestaurant());

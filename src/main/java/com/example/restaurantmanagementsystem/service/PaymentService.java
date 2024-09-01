@@ -13,33 +13,33 @@ import com.example.restaurantmanagementsystem.repository.PaymentRepository;
 @Service
 public class PaymentService {
 
-    @Autowired
-    private PaymentRepository paymentRepository;
+	@Autowired
+	private PaymentRepository paymentRepository;
 
-    public List<Payment> getAllPayments() {
-        return paymentRepository.findAll();
-    }
+	public List<Payment> getAllPayments() {
+		return paymentRepository.findAll();
+	}
 
-    public Payment getPaymentById(Long id) {
-        return paymentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Payment", "Id", id));
-    }
+	public Payment getPaymentById(Long id) {
+		return paymentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Payment", "Id", id));
+	}
 
-    public Payment createPayment(Payment payment) {
-        System.out.println("Payment added Successfully " + payment);
-        return paymentRepository.save(payment);
-    }
+	public Payment createPayment(Payment payment) {
+		System.out.println("Payment added Successfully " + payment);
+		return paymentRepository.save(payment);
+	}
 
-    public Payment updatePayment(Long id, Payment payment) {
-        Payment existingPayment = getPaymentById(id);
-        existingPayment.setAmount(payment.getAmount());
-        existingPayment.setOrder(payment.getOrder());
-        existingPayment.setPaymentDate(payment.getPaymentDate());
-        return paymentRepository.save(existingPayment);
-    }
+	public Payment updatePayment(Long id, Payment payment) {
+		Payment existingPayment = getPaymentById(id);
+		existingPayment.setAmount(payment.getAmount());
+		existingPayment.setOrder(payment.getOrder());
+		existingPayment.setPaymentDate(payment.getPaymentDate());
+		return paymentRepository.save(existingPayment);
+	}
 
-    public ResponseEntity<Void> deletePayment(Long id) {
-        paymentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Payment", "Id", id));
-        paymentRepository.deleteById(id);
-        return ResponseEntity.ok().build();
-    }
+	public ResponseEntity<Void> deletePayment(Long id) {
+		paymentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Payment", "Id", id));
+		paymentRepository.deleteById(id);
+		return ResponseEntity.ok().build();
+	}
 }
