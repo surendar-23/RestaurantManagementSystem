@@ -3,6 +3,8 @@ package com.example.restaurantmanagementsystem.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,25 +31,31 @@ public class Order {
 	private Double total;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "restaurant_id")
+	@JsonIgnore
 	private Restaurant restaurant;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderItem> orderItems;
 
 	@ManyToOne
 	@JoinColumn(name = "table_id")
+	@JsonIgnore
 	private Table table;
 
 	@ManyToOne
 	@JoinColumn(name = "waiter_id")
+	@JsonIgnore
 	private Waiter waiter;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<OrderDetails> orderDetails;
 
 	public Long getId() {

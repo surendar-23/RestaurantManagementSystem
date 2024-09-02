@@ -1,5 +1,8 @@
 package com.example.restaurantmanagementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,12 +25,14 @@ public class InventoryItem {
 	@NotNull(message = "Quantity is required")
 	private int quantity;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "restaurant_id")
+	@JsonIgnore
 	private Restaurant restaurant;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "supplier_id")
+	@JsonIgnore
 	private Supplier supplier;
 
 	public Supplier getSupplier() {

@@ -1,5 +1,7 @@
 package com.example.restaurantmanagementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class Table {
 	private int seats;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "restaurant_id")
 	private Restaurant restaurant;
 
