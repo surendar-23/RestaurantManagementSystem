@@ -3,6 +3,8 @@ package com.example.restaurantmanagementsystem.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,9 +30,11 @@ public class Accounting {
 
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
+	@JsonIgnore
 	private Owner owner;
 
 	@OneToMany(mappedBy = "accounting", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Bill> bills;
 
 	public Long getId() {

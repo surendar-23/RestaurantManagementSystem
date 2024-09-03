@@ -2,6 +2,8 @@ package com.example.restaurantmanagementsystem.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,9 +37,11 @@ public class Owner {
 	private Address address;
 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Restaurant> restaurants;
 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Accounting> accountings;
 
 	// Getters and Setters

@@ -2,6 +2,8 @@ package com.example.restaurantmanagementsystem.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,9 +40,11 @@ public class Delivery {
 
 	@OneToOne
 	@JoinColumn(name = "order_id")
+	@JsonIgnore
 	private Order order;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "delivery_partner_id")
 	private DeliveryPartner deliveryPartner;
 

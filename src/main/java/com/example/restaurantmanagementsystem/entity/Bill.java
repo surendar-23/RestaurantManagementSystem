@@ -2,6 +2,8 @@ package com.example.restaurantmanagementsystem.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +26,7 @@ public class Bill {
 	private double amount;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "accounting_id")
 	private Accounting accounting;
 

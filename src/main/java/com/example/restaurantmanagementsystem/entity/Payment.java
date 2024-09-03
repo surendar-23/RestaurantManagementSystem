@@ -2,6 +2,8 @@ package com.example.restaurantmanagementsystem.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +29,7 @@ public class Payment {
 
 	@ManyToOne
 	@JoinColumn(name = "order_id")
+	@JsonIgnore
 	private Order order;
 
 	public Long getId() {

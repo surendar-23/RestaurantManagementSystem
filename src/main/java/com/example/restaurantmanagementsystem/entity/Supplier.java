@@ -2,6 +2,8 @@ package com.example.restaurantmanagementsystem.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class Supplier {
 
 	private String contactInformation;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
 	private List<InventoryItem> inventoryItems;
 
