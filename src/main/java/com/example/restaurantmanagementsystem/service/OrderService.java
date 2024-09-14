@@ -20,9 +20,10 @@ public class OrderService {
 		return orderRepository.findAll();
 	}
 
-	public Order getOrderById(Long id) {
-		return orderRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Order", "Id", id));
-	}
+	 public Order getOrderById(Long id) {
+	        return orderRepository.findById(id)
+	                .orElseThrow(() -> new ResourceNotFoundException("Order", "Id", id));
+	    }
 
 	public Order createOrder(Order order) {
 		System.out.println("Order added Successfully " + order);
@@ -37,18 +38,23 @@ public class OrderService {
 		return orderRepository.save(order);
 	}
 
-	public Order updateOrder(Long id, Order order) {
-		Order existingOrder = getOrderById(id);
-		existingOrder.setCustomer(order.getCustomer());
-		existingOrder.setOrderDate(order.getOrderDate());
-		existingOrder.setOrderDetails(order.getOrderDetails());
-		existingOrder.setOrderItems(order.getOrderItems());
-		existingOrder.setRestaurant(order.getRestaurant());
-		existingOrder.setTable(order.getTable());
-		existingOrder.setTotal(order.getTotal());
-		existingOrder.setWaiter(order.getWaiter());
-		return orderRepository.save(existingOrder);
-	}
+	 public Order updateOrder(Order updatedOrder, Long id) {
+	        // Fetch the existing order
+	        Order existingOrder = getOrderById(id);
+	        
+	        // Update the fields
+	        existingOrder.setCustomer(updatedOrder.getCustomer());
+	        existingOrder.setOrderDate(updatedOrder.getOrderDate());
+	        existingOrder.setOrderDetails(updatedOrder.getOrderDetails());
+	        existingOrder.setOrderItems(updatedOrder.getOrderItems());
+	        existingOrder.setRestaurant(updatedOrder.getRestaurant());
+	        existingOrder.setTable(updatedOrder.getTable());
+	        existingOrder.setTotal(updatedOrder.getTotal());
+	        existingOrder.setWaiter(updatedOrder.getWaiter());
+	        
+	        // Save and return the updated order
+	        return orderRepository.save(existingOrder);
+	    }
 
 	public ResponseEntity<Void> deleteOrder(Long id) {
 		orderRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Order", "Id", id));

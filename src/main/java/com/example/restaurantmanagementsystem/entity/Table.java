@@ -14,61 +14,59 @@ import jakarta.validation.constraints.NotNull;
 @jakarta.persistence.Table(name = "restaurant_table")
 public class Table {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotNull(message = "Table number is required")
-	private int number;
+    @NotNull(message = "Table number is required")
+    private int number;
 
-	@NotNull(message = "Seats are required")
-	private int seats;
+    @NotNull(message = "Seats are required")
+    private int seats;
 
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name = "restaurant_id")
-	private Restaurant restaurant;
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id") // Changed to a unique name
+    @JsonIgnore
+    private User restaurant;
 
-	// Getters and Setters
+    public Long getId() {
+        return id;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public int getNumber() {
+        return number;
+    }
 
-	public int getNumber() {
-		return number;
-	}
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
-	public void setNumber(int number) {
-		this.number = number;
-	}
+    public int getSeats() {
+        return seats;
+    }
 
-	public int getSeats() {
-		return seats;
-	}
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
 
-	public void setSeats(int seats) {
-		this.seats = seats;
-	}
+    public User getRestaurant() {
+        return restaurant;
+    }
 
-	public Restaurant getRestaurant() {
-		return restaurant;
-	}
+    public void setRestaurant(User restaurant) {
+        this.restaurant = restaurant;
+    }
 
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
+    // Method to get the capacity of the table
+    public int getCapacity() {
+        return seats;
+    }
 
-	// Method to get the capacity of the table
-	public int getCapacity() {
-		return seats;
-	}
-
-	public void setCapacity(int seats) {
-		this.seats = seats;
-	}
+    public void setCapacity(int seats) {
+        this.seats = seats;
+    }
 }

@@ -13,68 +13,89 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "accounting")
 public class Accounting {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotNull(message = "Date is required")
-	private Date date;
+    @NotNull(message = "Date is required")
+    private Date date;
 
-	@NotNull(message = "Amount is required")
-	private double amount;
+    @NotNull(message = "Amount is required")
+    private double amount;
 
-	@ManyToOne
-	@JoinColumn(name = "owner_id")
-	@JsonIgnore
-	private Owner owner;
+    @ManyToOne
+    @JoinColumn(name = "owner_id") // Changed to a unique name
+    @JsonIgnore
+    private User owner;
 
-	@OneToMany(mappedBy = "accounting", cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<Bill> bills;
+    @OneToMany(mappedBy = "accounting", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Bill> bills;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public double getAmount() {
-		return amount;
-	}
+    public double getAmount() {
+        return amount;
+    }
 
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 
-	public Owner getOwner() {
-		return owner;
-	}
+    public User getOwner() {
+        return owner;
+    }
 
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 
-	public List<Bill> getBills() {
-		return bills;
-	}
+    public List<Bill> getBills() {
+        return bills;
+    }
 
-	public void setBills(List<Bill> bills) {
-		this.bills = bills;
-	}
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
+    }
 
+    public Accounting() {
+        super();
+    }
+
+    public Accounting(Long id, @NotNull(message = "Date is required") Date date,
+                      @NotNull(message = "Amount is required") double amount, User owner, List<Bill> bills) {
+        super();
+        this.id = id;
+        this.date = date;
+        this.amount = amount;
+        this.owner = owner;
+        this.bills = bills;
+    }
+
+    @Override
+    public String toString() {
+        return "Accounting [id=" + id + ", date=" + date + ", amount=" + amount + ", owner=" + owner + ", bills="
+                + bills + "]";
+    }
 }

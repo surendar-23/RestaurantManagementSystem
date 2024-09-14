@@ -30,20 +30,22 @@ public class OrderController {
 		return orderService.getAllOrders();
 	}
 
-	@GetMapping("/{id}")
-	public Order getOrderById(@PathVariable Long id) {
-		return orderService.getOrderById(id);
-	}
+	 @GetMapping("/{id}")
+	    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
+	        Order order = orderService.getOrderById(id);
+	        return ResponseEntity.ok(order);
+	    }
 
 	@PostMapping("")
 	public Order createOrder(@RequestBody Order order) {
 		return orderService.createOrder(order);
 	}
 
-	@PutMapping("/{id}")
-	public Order updateOrder(@PathVariable Long id, @RequestBody Order order) {
-		return orderService.updateOrder(id, order);
-	}
+	 @PutMapping("/{id}")
+	    public ResponseEntity<Order> updateOrder(@RequestBody Order updatedOrder, @PathVariable Long id) {
+	        Order updated = orderService.updateOrder(updatedOrder, id);
+	        return ResponseEntity.ok(updated);
+	    }
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteOrder(@PathVariable Long id) {

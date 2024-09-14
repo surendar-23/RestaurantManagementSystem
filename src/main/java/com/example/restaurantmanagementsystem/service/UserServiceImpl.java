@@ -1,6 +1,7 @@
 package com.example.restaurantmanagementsystem.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,10 +65,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserByEmail(User user) {
-
-		return null;
-	}
+	 public User getUserByEmail(User user) {
+        Optional<User> foundUser = userRepository.findByEmailId(user.getEmailId());
+        return foundUser.orElse(null);
+    }
 
 	@Override
 	public void deleteUser(long userId) {

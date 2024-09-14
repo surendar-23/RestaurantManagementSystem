@@ -20,116 +20,139 @@ import jakarta.validation.constraints.NotNull;
 @jakarta.persistence.Table(name = "orders")
 public class Order {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotNull(message = "Order date is required")
-	private Date orderDate;
+    @NotNull(message = "Order date is required")
+    private Date orderDate;
 
-	@NotNull(message = "Total is required")
-	private Double total;
+    @NotNull(message = "Total is required")
+    private Double total;
 
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name = "customer_id")
-	private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "customer_id") // Changed to a unique name
+    private User customer;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "restaurant_id")
-	@JsonIgnore
-	private Restaurant restaurant;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id") // Changed to a unique name
+    @JsonIgnore
+    private User restaurant;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private List<OrderItem> orderItems;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "waiter_id") // Changed to a unique name
+    @JsonIgnore
+    private User waiter;
 
-	@ManyToOne
-	@JoinColumn(name = "table_id")
-	@JsonIgnore
-	private Table table;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "table_id")
+    @JsonIgnore
+    private Table table;
 
-	@ManyToOne
-	@JoinColumn(name = "waiter_id")
-	@JsonIgnore
-	private Waiter waiter;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<OrderItem> orderItems;
 
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<OrderDetails> orderDetails;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<OrderDetails> orderDetails;
 
-	public Long getId() {
-		return id;
-	}
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Date getOrderDate() {
-		return orderDate;
-	}
+    public Date getOrderDate() {
+        return orderDate;
+    }
 
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
 
-	public Double getTotal() {
-		return total;
-	}
+    public Double getTotal() {
+        return total;
+    }
 
-	public void setTotal(Double total) {
-		this.total = total;
-	}
+    public void setTotal(Double total) {
+        this.total = total;
+    }
 
-	public Customer getCustomer() {
-		return customer;
-	}
+    public User getCustomer() {
+        return customer;
+    }
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
+    public void setCustomer(User customer) {
+        this.customer = customer;
+    }
 
-	public Restaurant getRestaurant() {
-		return restaurant;
-	}
+    public User getRestaurant() {
+        return restaurant;
+    }
 
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
+    public void setRestaurant(User restaurant) {
+        this.restaurant = restaurant;
+    }
 
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
-	}
+    public User getWaiter() {
+        return waiter;
+    }
 
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
-	}
+    public void setWaiter(User waiter) {
+        this.waiter = waiter;
+    }
 
-	public Table getTable() {
-		return table;
-	}
+    public Table getTable() {
+        return table;
+    }
 
-	public void setTable(Table table) {
-		this.table = table;
-	}
+    public void setTable(Table table) {
+        this.table = table;
+    }
 
-	public Waiter getWaiter() {
-		return waiter;
-	}
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
 
-	public void setWaiter(Waiter waiter) {
-		this.waiter = waiter;
-	}
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 
-	public List<OrderDetails> getOrderDetails() {
-		return orderDetails;
-	}
+    public List<OrderDetails> getOrderDetails() {
+        return orderDetails;
+    }
 
-	public void setOrderDetails(List<OrderDetails> orderDetails) {
-		this.orderDetails = orderDetails;
-	}
+    public void setOrderDetails(List<OrderDetails> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 
-	// Getters and Setters
+    public Order() {
+        super();
+    }
 
+    public Order(Long id, @NotNull(message = "Order date is required") Date orderDate,
+                 @NotNull(message = "Total is required") Double total, User customer, User restaurant,
+                 List<OrderItem> orderItems, Table table, User waiter, List<OrderDetails> orderDetails) {
+        super();
+        this.id = id;
+        this.orderDate = orderDate;
+        this.total = total;
+        this.customer = customer;
+        this.restaurant = restaurant;
+        this.orderItems = orderItems;
+        this.table = table;
+        this.waiter = waiter;
+        this.orderDetails = orderDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "Order [id=" + id + ", orderDate=" + orderDate + ", total=" + total + ", customer=" + customer
+                + ", restaurant=" + restaurant + ", orderItems=" + orderItems + ", table=" + table + ", waiter="
+                + waiter + ", orderDetails=" + orderDetails + "]";
+    }
 }

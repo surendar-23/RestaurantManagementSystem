@@ -15,33 +15,25 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 public class InventoryItem {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotBlank(message = "Inventory item name is required")
-	private String name;
+    @NotBlank(message = "Inventory item name is required")
+    private String name;
 
-	@NotNull(message = "Quantity is required")
-	private int quantity;
+    @NotNull(message = "Quantity is required")
+    private int quantity;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "restaurant_id")
-	@JsonIgnore
-	private Restaurant restaurant;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "restaurant_id")
+    @JsonIgnore
+    private User restaurant;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "supplier_id")
-	@JsonIgnore
-	private Supplier supplier;
-
-	public Supplier getSupplier() {
-		return supplier;
-	}
-
-	public void setSupplier(Supplier supplier) {
-		this.supplier = supplier;
-	}
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "supplier_id")
+    @JsonIgnore
+    private User supplier;
 
 	public Long getId() {
 		return id;
@@ -67,14 +59,21 @@ public class InventoryItem {
 		this.quantity = quantity;
 	}
 
-	public Restaurant getRestaurant() {
+	public User getRestaurant() {
 		return restaurant;
 	}
 
-	public void setRestaurant(Restaurant restaurant) {
+	public void setRestaurant(User restaurant) {
 		this.restaurant = restaurant;
 	}
 
-	// Getters and Setters
+	public User getSupplier() {
+		return supplier;
+	}
 
+	public void setSupplier(User supplier) {
+		this.supplier = supplier;
+	}
+    
+    
 }
