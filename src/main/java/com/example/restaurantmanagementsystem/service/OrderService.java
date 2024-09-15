@@ -29,8 +29,6 @@ public class OrderService {
 		System.out.println("Order added Successfully " + order);
 		order.setCustomer(order.getCustomer());
 		order.setOrderDate(order.getOrderDate());
-		order.setOrderDetails(order.getOrderDetails());
-		order.setOrderItems(order.getOrderItems());
 		order.setRestaurant(order.getRestaurant());
 		order.setTable(order.getTable());
 		order.setTotal(order.getTotal());
@@ -45,8 +43,6 @@ public class OrderService {
 	        // Update the fields
 	        existingOrder.setCustomer(updatedOrder.getCustomer());
 	        existingOrder.setOrderDate(updatedOrder.getOrderDate());
-	        existingOrder.setOrderDetails(updatedOrder.getOrderDetails());
-	        existingOrder.setOrderItems(updatedOrder.getOrderItems());
 	        existingOrder.setRestaurant(updatedOrder.getRestaurant());
 	        existingOrder.setTable(updatedOrder.getTable());
 	        existingOrder.setTotal(updatedOrder.getTotal());

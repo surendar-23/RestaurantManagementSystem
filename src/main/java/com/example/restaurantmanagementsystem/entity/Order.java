@@ -1,11 +1,9 @@
 package com.example.restaurantmanagementsystem.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -48,14 +45,6 @@ public class Order {
     @JoinColumn(name = "table_id")
     @JsonIgnore
     private Table table;
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<OrderItem> orderItems;
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<OrderDetails> orderDetails;
 
     // Getters and Setters
     public Long getId() {
@@ -114,45 +103,28 @@ public class Order {
         this.table = table;
     }
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
-
-    public List<OrderDetails> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(List<OrderDetails> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
-
     public Order() {
         super();
     }
 
     public Order(Long id, @NotNull(message = "Order date is required") Date orderDate,
                  @NotNull(message = "Total is required") Double total, User customer, User restaurant,
-                 List<OrderItem> orderItems, Table table, User waiter, List<OrderDetails> orderDetails) {
+                 Table table, User waiter) {
         super();
         this.id = id;
         this.orderDate = orderDate;
         this.total = total;
         this.customer = customer;
         this.restaurant = restaurant;
-        this.orderItems = orderItems;
         this.table = table;
         this.waiter = waiter;
-        this.orderDetails = orderDetails;
     }
 
-    @Override
-    public String toString() {
-        return "Order [id=" + id + ", orderDate=" + orderDate + ", total=" + total + ", customer=" + customer
-                + ", restaurant=" + restaurant + ", orderItems=" + orderItems + ", table=" + table + ", waiter="
-                + waiter + ", orderDetails=" + orderDetails + "]";
-    }
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", orderDate=" + orderDate + ", total=" + total + ", customer=" + customer
+				+ ", restaurant=" + restaurant + ", waiter=" + waiter + ", table=" + table + "]";
+	}
+    
+    
 }
